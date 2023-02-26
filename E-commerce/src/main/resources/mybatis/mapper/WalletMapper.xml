@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhulei.ecommerce.mapper.WalletMapper">
+    <select id="getBalanceByUserId" parameterType="Long" resultType="Double">
+        SELECT balance
+        FROM tpl_wallet_t
+        WHERE user_id = #{userId}
+    </select>
+    <update id="updateBalance" parameterType="com.zhulei.ecommerce.entity.WalletModel">
+        UPDATE tpl_wallet_t
+        SET balance          = #{balance},
+            last_updated_by  = #{lastUpdatedBy},
+            last_updated_date=#{lastUpdatedDate}
+        WHERE wallet_id = #{walletId}
+    </update>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhulei.ecommerce.mapper.RecordMapper">
+    <select id="getsRecord" parameterType="Long" resultType="com.zhulei.ecommerce.entity.RecordModel">
+        SELECT fee              AS "fee",
+               order_num        AS "orderNum",
+               transaction_type AS "transactionType",
+               created_by       AS "createdBy",
+               created_date     AS "createdDate"
+        FROM tpl_wallet_record_t
+        WHERE wallet_id = #{walletId}
+    </select>
+    <insert id="addRecord" parameterType="com.zhulei.ecommerce.entity.RecordModel">
+        INSERT INTO tpl_wallet_record_t (record_id, wallet_id, fee, order_num, transaction_type, created_by,
+                                         created_date)
+        VALUES (#{recordId},
+                #{walletId},
+                #{fee},
+                #{orderNum},
+                #{transactionType},
+                #{createdBy},
+                #{createdDate})
+    </insert>
+    <select id="nextRecordId" resultType="Long">
+        SELECT max(record_id) + 1
+        FROM tpl_wallet_record_t
+    </select>
+</mapper>

@@ -1,0 +1,28 @@
+DROP DATABASE IF EXISTS `wallet`;
+CREATE DATABASE IF NOT EXISTS `wallet`;
+DROP TABLE IF EXISTS `tpl_admin_t`;
+DROP TABLE IF EXISTS `tpl_wallet_t`;
+DROP TABLE IF EXISTS `tpl_record_t`;
+
+CREATE TABLE IF NOT EXISTS `tpl_admin_t`(
+    `id` BIGINT(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL COMMENT '编号id',
+    `ad_id` VARCHAR(20) NOT NULL COMMENT '用户编号',
+    `admin_name` VARCHAR(20) NOT NULL COMMENT '用户名',
+    `admin_pwd` VARCHAR(20) NOT NULL COMMENT '用户密码'
+    ) ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS `tpl_wallet_t`(
+    `id` BIGINT(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL COMMENT '编号id',
+    `ad_id` VARCHAR(20) NOT NULL COMMENT '用户编号',
+    `balance` DOUBLE(15,2) NOT NULL COMMENT '余额'
+    ) ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS `tpl_record_t`(
+    `id` BIGINT(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL COMMENT '编号id',
+    `ad_id` VARCHAR(20) NOT NULL COMMENT '用户编号',
+    `amount` DOUBLE(15,2) NOT NULL COMMENT '商品金额',
+    `order` VARCHAR(50) NOT NULL COMMENT '订单号',
+    `merchant_order` VARCHAR(50) NOT NULL COMMENT '商家订单号',
+    `create_time` DATE NOT NULL COMMENT '订单创建时间',
+    `pay_time` DATE NOT NULL COMMENT '支付时间'
+    ) ENGINE=INNODB;
